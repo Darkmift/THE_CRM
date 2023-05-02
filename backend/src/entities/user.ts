@@ -17,11 +17,14 @@ export class User {
     firstName: string;
 
     @Column()
+    lastName: string;
+
+    @Column()
     @Index({ unique: true })
     email: string;
 
     @Column()
-    lastName: string;
+    password: string;
 
     @ManyToOne(() => Role, userRole => userRole.users)
     @JoinColumn()

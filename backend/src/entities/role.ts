@@ -1,4 +1,3 @@
-// userRole.ts
 import {
     Entity,
     PrimaryGeneratedColumn,
