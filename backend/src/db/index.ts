@@ -1,5 +1,5 @@
 import 'reflect-metadata'; // This import is required for TypeORM
-import { DataSource } from 'typeorm';
+import { DataSource, ObjectType } from 'typeorm';
 import connectionOptions from '@/config/ormconfig';
 import { Role } from '@/entities/role';
 
@@ -38,7 +38,7 @@ const connToDS = async () => {
 
 export const dataSource = connToDS();
 
-export const getRepository = async (Model: any) => {
+export const getRepository = async <T>(Model: ObjectType<T>) => {
     const appDataSource = await dataSource;
     if (!appDataSource) throw new Error('DB INIT FAILED');
     const targetRepo = appDataSource.getRepository(Model);
