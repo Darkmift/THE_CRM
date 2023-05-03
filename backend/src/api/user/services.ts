@@ -7,7 +7,7 @@ export const createUser = async (newUser: NewUser): Promise<User> => {
     const repo = await getRepository(User);
     const roleRepository = await getRepository(Role);
     const role = await roleRepository.findOne({
-        where: { role: newUser.role },
+        where: { role: 'user' /*newUser.role*/ },
     });
 
     if (!role) {
