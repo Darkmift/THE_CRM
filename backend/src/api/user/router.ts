@@ -2,7 +2,15 @@ import { joiValidateMiddleware } from './../common/middlwares/joi';
 import { Router } from 'express';
 import Joi from 'Joi';
 import { ROLES } from '@/config/const';
-import { addUser } from './controller';
+import {
+    addUser,
+    getUserById,
+    getUsers,
+    getUserByEmail,
+    editUser,
+    removeUser,
+} from './controller';
+
 const router = Router();
 
 const schemas = {
@@ -27,5 +35,10 @@ const schemas = {
 };
 
 router.post('/', joiValidateMiddleware(schemas.create, 'body'), addUser);
+router.get('/', getUsers);
+router.get('/:id', getUserById);
+router.get('/email/:email', getUserByEmail);
+router.put('/:id', editUser);
+router.delete('/:id', removeUser);
 
 export default router;
