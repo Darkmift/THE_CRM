@@ -55,7 +55,7 @@ app.use((req: Request, res: Response) => {
 // Always last (global error handler)
 app.use(errorHandler);
 
-app.listen(port, () => {
+export const server = app.listen(port, () => {
     console.log(`⚡️[NODE_ENV]: ${NODE_ENV}`);
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 

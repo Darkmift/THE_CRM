@@ -1,17 +1,13 @@
 import request from 'supertest';
-import app from '../src/index';
+import app, { server } from '../src/index';
 
 // import { describe, it, beforeAll } from '@jest/globals';
 
 describe('GET /', () => {
-    beforeAll(() => {
-        console.log('coming inside beforeAll', process.env);
-    });
-
     it('should return a 200 status and a message', async () => {
-        const response = await request(app).get('/');
+        const response = await request(app).get('/health');
         expect(response.status).toBe(200);
-        expect(response.body.message).toBe('Hello, world!');
+        expect(response.body.message).toBe('Ok');
     });
 });
 
@@ -20,4 +16,8 @@ describe('GET /non-existent', () => {
         const response = await request(app).get('/non-existent');
         expect(response.status).toBe(404);
     });
+});
+
+afterAll(() => {
+    server.close();
 });
