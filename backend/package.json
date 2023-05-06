@@ -4,7 +4,7 @@
     "main": "src/index.ts",
     "license": "MIT",
     "scripts": {
-        "test": "jest",
+        "test": "dotenv -e .env.development.local -- jest --detectOpenHandles",
         "build": "npx tsc",
         "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
         "dev": "cross-env NODE_ENV=development nodemon",
@@ -39,6 +39,7 @@
         "babel-jest": "^29.5.0",
         "concurrently": "^7.5.0",
         "cross-env": "^7.0.3",
+        "dotenv-cli": "^7.2.1",
         "eslint": "^8.26.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
