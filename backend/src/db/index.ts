@@ -1,3 +1,4 @@
+import { logger } from '@/utils/logger';
 import 'reflect-metadata'; // This import is required for TypeORM
 import { DataSource, ObjectType, Repository } from 'typeorm';
 import connectionOptions from '@/config/ormconfig';
@@ -7,7 +8,7 @@ const connToDS = async () => {
     const dataSourceConn = new DataSource(connectionOptions);
     try {
         await dataSourceConn.initialize();
-        console.log('Data Source has been initialized!');
+        logger.info('Data Source has been initialized!');
 
         // Add this function to check and insert roles
         const checkAndInsertRoles = async () => {
@@ -32,7 +33,7 @@ const connToDS = async () => {
 
         return dataSourceConn;
     } catch (err) {
-        console.error('Error during Data Source initialization', err);
+        logger.error('Error during Data Source initialization', err);
         throw err;
     }
 };

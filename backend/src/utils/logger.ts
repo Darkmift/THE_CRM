@@ -6,6 +6,8 @@ import { LOG_DIR } from '@/config';
 
 // logs dir
 const logDir: string = join(__dirname, LOG_DIR || 'logs');
+const logLevel = process.env.NODE_ENV === 'tests' ? 'error' : 'debug';
+console.log('🚀 ~ file: logger.ts:10 ~ logLevel:', logLevel);
 
 if (!existsSync(logDir)) {
     mkdirSync(logDir);
@@ -30,7 +32,7 @@ const logger = winston.createLogger({
     transports: [
         // debug log setting
         new winstonDaily({
-            level: 'debug',
+            level: logLevel,
             datePattern: 'YYYY-MM-DD',
             dirname: logDir + '/debug', // log file /logs/debug/*.log in save
             filename: `%DATE%.log`,

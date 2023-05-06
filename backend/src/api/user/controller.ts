@@ -15,7 +15,7 @@ export const addUser = async (
 ) => {
     try {
         const result = await createUser(req.body);
-        res.status(201).json({ ...result, role: result.role.role });
+        res.status(201).json(result);
     } catch (error) {
         next(error);
     }

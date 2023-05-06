@@ -56,13 +56,19 @@ app.use((req: Request, res: Response) => {
 app.use(errorHandler);
 
 export const server = app.listen(port, () => {
-    console.log(`⚡️[NODE_ENV]: ${NODE_ENV}`);
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+    if (process.env.NODE_ENV !== 'tests') {
+        console.log(`⚡️[NODE_ENV]: ${NODE_ENV}`);
+        console.log(
+            `⚡️[server]: Server is running at http://localhost:${port}`,
+        );
 
-    logger.info(`=================================`);
-    logger.info(`======= ENV: ${NODE_ENV} ========`);
-    logger.info(`🚀 [server]: Server is running at http://localhost:${port}`);
-    logger.info(`=================================`);
+        logger.info(`=================================`);
+        logger.info(`======= ENV: ${NODE_ENV} ========`);
+        logger.info(
+            `🚀 [server]: Server is running at http://localhost:${port}`,
+        );
+        logger.info(`=================================`);
+    }
 });
 
 export default app;

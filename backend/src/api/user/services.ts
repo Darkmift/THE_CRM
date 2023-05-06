@@ -4,6 +4,17 @@ import { Role } from '@/entities/role'; // Import the Role entity
 import { NewUser } from '@/types';
 import { ObjectType } from 'typeorm';
 
+type WhereArgs = { role?: 'user' | 'admin'; id?: string; email?: string };
+const searchOptionsFactory = (
+    searchParams: WhereArgs,
+): {
+    where: WhereArgs;
+    relations: ['role'];
+} => ({
+    where: searchParams,
+    relations: ['role'],
+});
+
 export const createUser = async (newUser: NewUser): Promise<User> => {
     const repo = await getRepository(User);
     const roleRepository = await getRepository(Role);
@@ -21,7 +32,7 @@ export const createUser = async (newUser: NewUser): Promise<User> => {
 
 export const getById = async (id: string): Promise<ObjectType<User> | null> => {
     const repo = await getRepository(User);
-    const user = await repo.findOne({ where: { id } });
+    const user = await repo.findOne(searchOptionsFactory({ id }));
     return user;
 };
 
@@ -34,7 +45,7 @@ export const getByEmail = async (
     email: string,
 ): Promise<ObjectType<User> | null> => {
     const repo = await getRepository(User);
-    return await repo.findOne({ where: { email } });
+    return await repo.findOne(searchOptionsFactory({ email }));
 };
 
 export const updateUser = async (
@@ -42,7 +53,7 @@ export const updateUser = async (
     updatedUser: Partial<ObjectType<User>>,
 ): Promise<ObjectType<User> | null> => {
     const repo = await getRepository(User);
-    const user = await repo.findOne({ where: { id } });
+    const user = await repo.findOne(searchOptionsFactory({ id }));
 
     if (!user) {
         throw new Error(`User with id "${id}" not found.`);
@@ -54,7 +65,7 @@ export const updateUser = async (
 
 export const deleteUser = async (id: string): Promise<void> => {
     const repo = await getRepository(User);
-    const user = await repo.findOne({ where: { id } });
+    const user = await repo.findOne(searchOptionsFactory({ id }));
 
     if (!user) {
         throw new Error(`User with id "${id}" not found.`);
