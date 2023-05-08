@@ -11,7 +11,7 @@ import errorHandler from '@/api/common/middlwares/error-handler';
 import mainRouter from '@/main.router';
 import { NODE_ENV, PORT, LOG_FORMAT } from '@/config';
 import { logger, stream } from '@/utils/logger';
-import { dataSource } from '@/db';
+import { testHealth } from '@/db';
 
 const app: Express = express();
 const port = PORT || 5000;
@@ -34,10 +34,7 @@ app.get('/health', async (req: Request, res: Response) => {
         sqlConnection: null,
     };
     try {
-        const appDataSource = await dataSource;
-        if (!appDataSource) throw new Error('DB INIT FAILED');
-        await appDataSource.query('SELECT 1 + 1');
-        data.sqlConnection = 'Ok';
+        data.sqlConnection = (await testHealth()) ? 'Ok' : 'failed';
     } catch (error) {
         logger.error('🚀 ~ api/health db conn error:', error);
         data.sqlConnection = 'failed';
