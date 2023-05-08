@@ -7,7 +7,6 @@ import { LOG_DIR } from '@/config';
 // logs dir
 const logDir: string = join(__dirname, LOG_DIR || 'logs');
 const logLevel = process.env.NODE_ENV === 'tests' ? 'error' : 'debug';
-console.log('🚀 ~ file: logger.ts:10 ~ logLevel:', logLevel);
 
 if (!existsSync(logDir)) {
     mkdirSync(logDir);
@@ -62,6 +61,10 @@ logger.add(
         ),
     }),
 );
+
+if (process.env.NODE_ENV === 'tests') {
+    logger.transports.forEach(t => (t.silent = true));
+}
 
 const stream = {
     write: (message: string) => {
