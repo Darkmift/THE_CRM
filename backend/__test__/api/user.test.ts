@@ -28,10 +28,6 @@ describe('User API', () => {
             await request(app).delete(`/api/user/${await getUserId()}`);
 
             const response = await createTestUser();
-            console.log(
-                '🚀 ~ file: user.test.ts:31 ~ it ~ response:',
-                response.body.role,
-            );
             expect(response.status).toBe(201);
             expect(response.body.firstName).toBe('John');
             expect(response.body.lastName).toBe('Doe');
