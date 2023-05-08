@@ -4,8 +4,7 @@
     "main": "src/index.ts",
     "license": "MIT",
     "scripts": {
-        "test:draft": "concurrently \"dotenv -e .env.development.local -v NODE_ENV=tests\" \"jest --detectOpenHandles\"",
-        "test": "dotenv -e .env.development.local -v NODE_ENV=tests -- jest --detectOpenHandles",
+        "test": "dotenv -e .env.development.local -v NODE_ENV=tests -- jest --verbose --detectOpenHandles",
         "build": "npx tsc",
         "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
         "dev": "cross-env NODE_ENV=development nodemon",
