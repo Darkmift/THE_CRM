@@ -26,6 +26,9 @@ export class User {
     @Column()
     password: string;
 
+    @Column({ nullable: true })
+    image: string;
+
     @ManyToOne(() => Role, userRole => userRole.users)
     @JoinColumn()
     role: Role;
