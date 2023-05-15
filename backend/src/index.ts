@@ -12,6 +12,7 @@ import mainRouter from '@/main.router';
 import { NODE_ENV, PORT, LOG_FORMAT } from '@/config';
 import { logger, stream } from '@/utils/logger';
 import { testHealth } from '@/db';
+import swaggerUiUtil from '@/utils/swagger';
 
 const app: Express = express();
 const port = PORT || 5000;
@@ -43,6 +44,7 @@ app.get('/health', async (req: Request, res: Response) => {
     res.status(200).send(data);
 });
 
+app.use('/api-docs', swaggerUiUtil.serve, swaggerUiUtil.setup);
 app.use('/api', mainRouter);
 
 app.use((req: Request, res: Response) => {
