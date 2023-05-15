@@ -4,6 +4,7 @@ import {
     Column,
     Index,
     ManyToMany,
+    JoinTable,
 } from 'typeorm';
 import { Year } from './year';
 import { Project } from './project';
@@ -25,11 +26,14 @@ export class Internship {
     description: string;
 
     @ManyToMany(() => Year, year => year.internships)
+    @JoinTable()
     years: Year[];
 
     @ManyToMany(() => Project, project => project.internships)
+    @JoinTable()
     projects: Project[];
 
     @ManyToMany(() => Instructor, instructor => instructor.internships)
+    @JoinTable()
     instructors: Instructor[];
 }

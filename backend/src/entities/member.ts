@@ -4,6 +4,7 @@ import {
     Column,
     Index,
     ManyToMany,
+    JoinTable,
 } from 'typeorm';
 import { Year } from './year';
 import { Project } from './project';
@@ -24,8 +25,10 @@ export class Member {
     lastName: string;
 
     @ManyToMany(() => Year, year => year.members)
+    @JoinTable()
     years: Year[];
 
     @ManyToMany(() => Project, project => project.members)
+    @JoinTable()
     projects: Project[];
 }
