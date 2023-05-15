@@ -32,6 +32,14 @@ const schemas = {
                 otherwise: Joi.optional(),
             }),
     }),
+    update: Joi.object({
+        firstName: Joi.string().min(1).max(255),
+        lastName: Joi.string().min(1).max(255),
+        email: Joi.string().email().max(255),
+        role: Joi.string().valid(...Object.values(ROLES)),
+        password: Joi.string().min(8).max(255),
+        id: Joi.alternatives().try(Joi.number(), Joi.string()),
+    }),
 };
 
 router.post('/', joiValidateMiddleware(schemas.create, 'body'), addUser);
