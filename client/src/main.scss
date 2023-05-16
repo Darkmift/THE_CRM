@@ -1,9 +1,13 @@
+:root {
+  --direction: ltr;
+}
+
 body,
 html {
   padding: 0;
   margin: 0;
 }
 
-#root{
-  
+* {
+  direction: var(--direction);
 }
