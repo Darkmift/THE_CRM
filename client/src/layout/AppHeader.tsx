@@ -14,6 +14,9 @@ import {
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 import React from 'react';
+import CountrySelect from '@/components/common/CountrySelect';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 type Props = {
   anchorElNav?: null | HTMLElement;
@@ -21,10 +24,17 @@ type Props = {
   handleCloseNavMenu?: () => void;
 };
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [
+  { path: '/', name: 'Home' },
+  { path: '/projects', name: 'Projects' },
+  { path: '/internships', name: 'Internships' },
+  { path: '/instructors', name: 'Instructors' },
+  { path: '/winning-projects', name: 'Winning Projects' },
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function HamburgerMenu({ anchorElNav, handleCloseNavMenu, handleOpenNavMenu }: Props) {
+  const { t } = useTranslation();
   return (
     <>
       <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -57,8 +67,8 @@ function HamburgerMenu({ anchorElNav, handleCloseNavMenu, handleOpenNavMenu }: P
           }}
         >
           {pages.map((page) => (
-            <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
+            <MenuItem to={page.path} component={Link} key={page.name} onClick={handleCloseNavMenu}>
+              <Typography textAlign="center">{t(page.name)}</Typography>
             </MenuItem>
           ))}
         </Menu>
@@ -87,6 +97,7 @@ function HamburgerMenu({ anchorElNav, handleCloseNavMenu, handleOpenNavMenu }: P
 }
 
 function NormalMenu({ handleCloseNavMenu }: Props) {
+  const { t } = useTranslation('AppHeader');
   return (
     <>
       <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -96,7 +107,7 @@ function NormalMenu({ handleCloseNavMenu }: Props) {
         component="a"
         href="/"
         sx={{
-          mr: 2,
+          mx: 3,
           display: { xs: 'none', md: 'flex' },
           fontFamily: 'monospace',
           fontWeight: 700,
@@ -110,11 +121,13 @@ function NormalMenu({ handleCloseNavMenu }: Props) {
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {pages.map((page) => (
           <Button
-            key={page}
+            key={page.name}
+            component={Link}
+            to={page.path}
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
-            {page}
+            {t(page.name)}
           </Button>
         ))}
       </Box>
@@ -123,6 +136,7 @@ function NormalMenu({ handleCloseNavMenu }: Props) {
 }
 
 function AvatarMenu() {
+  const { t } = useTranslation();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -158,9 +172,12 @@ function AvatarMenu() {
       >
         {settings.map((setting) => (
           <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{setting}</Typography>
+            <Typography textAlign="center">{t(setting)}</Typography>
           </MenuItem>
         ))}
+        <MenuItem>
+          <CountrySelect handleCloseUserMenu={handleCloseUserMenu} />
+        </MenuItem>
       </Menu>
     </Box>
   );
