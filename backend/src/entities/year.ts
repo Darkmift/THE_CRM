@@ -36,6 +36,6 @@ export class Year {
     members: Member[];
 
     @ManyToMany(() => Project, project => project.years)
-    @JoinTable()
+    // @JoinTable()
     projects: Project[];
 }

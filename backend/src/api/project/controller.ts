@@ -28,6 +28,7 @@ export const getProjectByIdHandler = async (
 ) => {
     try {
         const result = await getProjectById(req.params.id);
+        if (!result) res.status(404).json(result);
         res.status(200).json(result);
     } catch (error) {
         next(error);

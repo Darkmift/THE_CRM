@@ -13,7 +13,7 @@ import { Year } from './year';
 
 @Entity()
 export class Project {
-    @PrimaryGeneratedColumn('rowid')
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column()
