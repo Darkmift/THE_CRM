@@ -1,5 +1,9 @@
 import { CountryType, AllowedLocales } from './types/index.type';
 
+export const VALID_YEAR_REGEX = /^(200[0-9]|20[1-9][0-9]|2100)$/;
+export const VALID_EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export const IMAGE_ASSETS_FOLDER_PATH = '/assets/images';
+
 export const ALLOWED_LOCALES: AllowedLocales[] = ['heIL', 'enUS'];
 export const COUNTRIES: readonly CountryType[] = [
   {
