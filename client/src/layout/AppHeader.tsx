@@ -31,7 +31,12 @@ const pages = [
   { path: '/instructors', name: 'Instructors' },
   { path: '/winning-projects', name: 'Winning Projects' },
 ];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [
+  { path: '/', name: 'Profile' },
+  { path: '/', name: 'Account' },
+  { path: '/dashboard', name: 'Dashboard' },
+  { path: '/', name: 'Logout' },
+];
 
 function HamburgerMenu({ anchorElNav, handleCloseNavMenu, handleOpenNavMenu }: Props) {
   const { t } = useTranslation();
@@ -151,7 +156,12 @@ function AvatarMenu() {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar
+            alt="Remy Sharp"
+            // src="/static/images/avatar/2.jpg"
+          >
+            RS
+          </Avatar>
         </IconButton>
       </Tooltip>
       <Menu
@@ -171,8 +181,13 @@ function AvatarMenu() {
         onClose={handleCloseUserMenu}
       >
         {settings.map((setting) => (
-          <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            <Typography textAlign="center">{t(setting)}</Typography>
+          <MenuItem
+            to={setting.path}
+            component={Link}
+            key={setting.name}
+            onClick={handleCloseUserMenu}
+          >
+            <Typography textAlign="center">{t(setting.name)}</Typography>
           </MenuItem>
         ))}
         <MenuItem>
@@ -183,7 +198,7 @@ function AvatarMenu() {
   );
 }
 
-function AppHeader({}: Props) {
+function AppHeader() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {

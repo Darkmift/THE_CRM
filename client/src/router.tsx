@@ -5,6 +5,10 @@ import Internships from '@/pages/Internships';
 import Projects from '@/pages/Projects';
 import WinningProjects from '@/pages/WinningProjects';
 import Layout from '@/layout';
+import DashboardPage from './pages/Dashboard';
+import ProjectAddPage from './pages/Dashboard/Project/ProjectAdd';
+import ProjectEditPage from './pages/Dashboard/Project/ProjectEdit';
+import ProjectDashboardPage from './pages/Dashboard/Project';
 
 const routes: RouteObject[] = [
   {
@@ -15,19 +19,39 @@ const routes: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: '/instructors',
+        path: 'dashboard',
+        element: <DashboardPage />,
+        children: [
+          {
+            path: 'project',
+            element: <ProjectDashboardPage />,
+            children: [
+              {
+                path: 'project-add',
+                element: <ProjectAddPage />,
+              },
+              {
+                path: 'project-edit',
+                element: <ProjectEditPage />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'instructors',
         element: <Instructors />,
       },
       {
-        path: '/internships',
+        path: 'internships',
         element: <Internships />,
       },
       {
-        path: '/projects',
+        path: 'projects',
         element: <Projects />,
       },
       {
-        path: '/winning-projects',
+        path: 'winning-projects',
         element: <WinningProjects />,
       },
     ],
