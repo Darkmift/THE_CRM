@@ -24,3 +24,42 @@ export type FormikFieldProps = {
     ) => void | ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   };
 };
+
+export type Year = {
+  id: string;
+  year: string;
+  isEnabled: boolean;
+};
+
+export type Instructor = {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+};
+
+export type Internship = {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+};
+
+export type Member = {
+  id: string;
+  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
+export type Project = {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  years?: Year[];
+  instructors?: Instructor[];
+  internships?: Internship[];
+  members?: Member[];
+};
