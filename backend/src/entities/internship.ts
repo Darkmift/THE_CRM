@@ -26,7 +26,6 @@ export class Internship {
     description: string;
 
     @ManyToMany(() => Year, year => year.internships)
-    @JoinTable()
     years: Year[];
 
     @ManyToMany(() => Project, project => project.internships)

@@ -27,18 +27,14 @@ export class Project {
     description: string;
 
     @ManyToMany(() => Member, member => member.projects)
-    @JoinTable()
     members: Member[];
 
     @ManyToMany(() => Internship, internship => internship.projects)
-    @JoinTable()
     internships: Internship[];
 
     @ManyToMany(() => Instructor, instructor => instructor.projects)
-    @JoinTable()
     instructors: Instructor[];
 
     @ManyToMany(() => Year, year => year.projects)
-    @JoinTable()
     years: Year[];
 }

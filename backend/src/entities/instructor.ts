@@ -26,7 +26,6 @@ export class Instructor {
     description: string;
 
     @ManyToMany(() => Year, year => year.instructors)
-    @JoinTable()
     years: Year[];
 
     @ManyToMany(() => Project, project => project.instructors)
