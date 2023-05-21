@@ -12,7 +12,7 @@ import { Internship } from './internship';
 
 @Entity()
 export class Instructor {
-    @PrimaryGeneratedColumn('rowid')
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column()
