@@ -29,7 +29,7 @@ function BreadCrumbs() {
     <Breadcrumbs maxItems={2} separator="›" aria-label="breadcrumb">
       {routeSegments.map((segment, key, self) => {
         return segment === self[self.length - 1] ? (
-          <Typography key={key} color="text.primary">
+          <Typography key={key} color="#a7a7a7">
             {segment.name}
           </Typography>
         ) : (
