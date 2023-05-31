@@ -6,9 +6,8 @@ import Projects from '@/pages/Projects';
 import WinningProjects from '@/pages/WinningProjects';
 import Layout from '@/layout';
 import DashboardPage from './pages/Dashboard';
-import ProjectAddPage from './pages/Dashboard/Project/ProjectAdd';
-import ProjectEditPage from './pages/Dashboard/Project/ProjectEdit';
 import ProjectDashboardPage from './pages/Dashboard/Project';
+import YearDashboard from './pages/Dashboard/Year';
 
 const routes: RouteObject[] = [
   {
@@ -25,16 +24,10 @@ const routes: RouteObject[] = [
           {
             path: 'project',
             element: <ProjectDashboardPage />,
-            children: [
-              {
-                path: 'project-add',
-                element: <ProjectAddPage />,
-              },
-              {
-                path: 'project-edit',
-                element: <ProjectEditPage />,
-              },
-            ],
+          },
+          {
+            path: 'year',
+            element: <YearDashboard />,
           },
         ],
       },
