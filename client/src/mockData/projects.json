@@ -1,0 +1,26 @@
+[
+  {
+    "id": "f8086368-dca5-4e39-ae7a-ee3a4c57afc6",
+    "name": "Project Alpha",
+    "image": "https://steamuserimages-a.akamaihd.net/ugc/952958837545085710/66EE7FE7365BF1365AFA9E8EB3C7447FF4DF81CD/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+    "description": "Project Alpha focuses on advanced techniques and technologies."
+  },
+  {
+    "id": "f8086368-dca5-4e39-ae7a-ee3a4c57afc6",
+    "name": "Project Beta",
+    "image": "https://steamuserimages-a.akamaihd.net/ugc/952958837545085710/66EE7FE7365BF1365AFA9E8EB3C7447FF4DF81CD/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+    "description": "Project Beta focuses on advanced techniques and technologies."
+  },
+  {
+    "id": "f8086368-dca5-4e39-ae7a-ee3a4c57afc6",
+    "name": "Project Charlie",
+    "image": "https://steamuserimages-a.akamaihd.net/ugc/952958837545085710/66EE7FE7365BF1365AFA9E8EB3C7447FF4DF81CD/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+    "description": "Project Charlie focuses on advanced techniques and technologies."
+  },
+  {
+    "id": "f8086367-dca5-4e39-ae7a-ee3a4c57afc6",
+    "name": "Project Delta",
+    "image": "https://steamuserimages-a.akamaihd.net/ugc/952958837545085710/66EE7FE7365BF1365AFA9E8EB3C7447FF4DF81CD/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+    "description": "Project Delta focuses on advanced techniques and technologies."
+  }
+]
