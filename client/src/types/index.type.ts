@@ -15,6 +15,7 @@ export interface CountryType {
 // Formik
 export type FormikFieldTouchedOrErrorObject = { [key: string]: string | undefined };
 export type GenericStringValuesObject = { [key: string]: string };
+export type GenericUknownValuesObject = { [key: string]: unknown };
 export type FormikFieldProps = {
   field: {
     name: string;
@@ -24,10 +25,17 @@ export type FormikFieldProps = {
     ) => void | ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> | undefined;
   };
 };
+export type FieldParam = {
+  name: string;
+  order: number;
+  type: 'simple' | 'textarea' | 'selectPlain' | 'selectObject' | 'boolean';
+  label?: string;
+};
+export type YupCustomFormData = { [key: string]: unknown };
 
 export type Year = {
-  id: string;
-  year: string;
+  id?: string;
+  year: number;
   isEnabled: boolean;
 };
 
@@ -63,3 +71,5 @@ export type Project = {
   internships?: Internship[];
   members?: Member[];
 };
+
+export type CrudResult = { success: boolean; message: string };
