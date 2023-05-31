@@ -1,5 +1,55 @@
 [
   {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2001",
+    "isEnabled": false
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2002",
+    "isEnabled": true
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2003",
+    "isEnabled": false
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2004",
+    "isEnabled": false
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2005",
+    "isEnabled": false
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2006",
+    "isEnabled": true
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2007",
+    "isEnabled": false
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2008",
+    "isEnabled": false
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2009",
+    "isEnabled": true
+  },
+  {
+    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
+    "year": "2010",
+    "isEnabled": true
+  },
+  {
     "id": "5234df34-6c38-4004-9d45-685b94e8fc69",
     "year": "2022",
     "isEnabled": false
@@ -12,11 +62,6 @@
   {
     "id": "99356a04-39b5-44b9-84cb-629960db70e7",
     "year": "2023",
-    "isEnabled": false
-  },
-  {
-    "id": "379fbf6e-85bc-4a6b-99a4-9e894c829439",
-    "year": "2001",
     "isEnabled": false
   }
 ]
