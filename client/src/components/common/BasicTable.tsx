@@ -115,20 +115,20 @@ function BasicTable({ dataset, customHeaders, withCrudActions, onDelete, onUpdat
           )}
         </TableBody>
       </Table>
-      <Box sx={{ padding: '0 10px' }}>
-        <TablePagination
-          count={dataset.length}
-          page={currentPage}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[5, 10]}
-          onRowsPerPageChange={(ev) => {
-            setRowsPerPage(+ev.target.value);
-          }}
-          onPageChange={(_, page) => {
-            setCurrentPage(page);
-          }}
-        />
-      </Box>
+
+      <TablePagination
+        component={'div'}
+        count={dataset.length}
+        page={currentPage}
+        rowsPerPage={rowsPerPage}
+        rowsPerPageOptions={[5, 10]}
+        onRowsPerPageChange={(ev) => {
+          setRowsPerPage(+ev.target.value);
+        }}
+        onPageChange={(_, page) => {
+          setCurrentPage(page);
+        }}
+      />
     </TableContainer>
   );
 }
