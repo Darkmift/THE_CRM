@@ -4,9 +4,7 @@ import { Outlet } from 'react-router-dom';
 import AppHeader from './AppHeader';
 import styles from './layout.module.scss';
 
-type Props = {};
-
-function MainLayout({}: Props) {
+function MainLayout() {
   const { ThemeProvider, themeWithLocale } = useCustomTheme();
 
   return (
