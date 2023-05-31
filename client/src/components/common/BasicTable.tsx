@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -8,6 +8,8 @@ import {
   TableRow,
   Paper,
   useTheme,
+  TablePagination,
+  Box,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -21,16 +23,29 @@ type Props = {
   onUpdate?: (arg: never) => void;
 };
 
+function paginateArray(
+  array: GenericUknownValuesObject[],
+  currentPage: number,
+  pageSize: number
+): GenericUknownValuesObject[] {
+  // PAGES START FROM 0 NOT 1
+  // Calculate start and end index for the slice
+  const start = currentPage * pageSize;
+  const endIdx = start + pageSize;
+  return structuredClone(array).slice(start, endIdx);
+}
+
 function BasicTable({ dataset, customHeaders, withCrudActions, onDelete, onUpdate }: Props) {
   const theme = useTheme();
   const headers = dataset?.[0] && customHeaders ? customHeaders : Object.keys(dataset[0]).sort();
 
+  const [visibleRows, setVisibleRows] = useState(dataset);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
   useEffect(() => {
-    console.log('🚀 ~ file: BasicTable.tsx:17 ~ BasicTable ~ headers:', {
-      dataset,
-      headers,
-    });
-  }, [dataset, headers]);
+    setVisibleRows(paginateArray(dataset, currentPage, rowsPerPage));
+  }, [dataset, currentPage, rowsPerPage]);
 
   return (
     <TableContainer component={Paper}>
@@ -49,11 +64,11 @@ function BasicTable({ dataset, customHeaders, withCrudActions, onDelete, onUpdat
           </TableRow>
         </TableHead>
         <TableBody>
-          {dataset?.length &&
-            dataset.map((row, index) => {
+          {visibleRows?.length ? (
+            visibleRows.map((row, index) => {
               return (
                 <TableRow
-                  key={index}
+                  key={index + '-' + currentPage}
                   sx={{
                     cursor: 'pointer',
                     '&:hover': {
@@ -77,7 +92,7 @@ function BasicTable({ dataset, customHeaders, withCrudActions, onDelete, onUpdat
                       </TableCell>
                     </>
                   ) : (
-                    ''
+                    <TableCell></TableCell>
                   )}
 
                   {headers.map((key, jIndex) => {
@@ -90,9 +105,30 @@ function BasicTable({ dataset, customHeaders, withCrudActions, onDelete, onUpdat
                   })}
                 </TableRow>
               );
-            })}
+            })
+          ) : (
+            <TableRow>
+              <TableCell sx={{ border: 'none' }} colSpan={headers.length}>
+                No Data
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
+      <Box sx={{ padding: '0 10px' }}>
+        <TablePagination
+          count={dataset.length}
+          page={currentPage}
+          rowsPerPage={rowsPerPage}
+          rowsPerPageOptions={[5, 10]}
+          onRowsPerPageChange={(ev) => {
+            setRowsPerPage(+ev.target.value);
+          }}
+          onPageChange={(_, page) => {
+            setCurrentPage(page);
+          }}
+        />
+      </Box>
     </TableContainer>
   );
 }
