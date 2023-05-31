@@ -11,6 +11,12 @@ type SupportedLocales = keyof typeof locales;
 
 export default function useCustomTheme(defaultLocale?: SupportedLocales) {
   const [locale, setLocale] = React.useState<SupportedLocales>(defaultLocale || 'heIL');
+  const [isRtl, setIsRtl] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsRtl(i18n.language === 'he');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.language]);
 
   React.useEffect(() => {
     const r: HTMLElement | null = document.querySelector(':root');
@@ -30,5 +36,6 @@ export default function useCustomTheme(defaultLocale?: SupportedLocales) {
     changeLocal,
     locales: ALLOWED_LOCALES,
     locale,
+    isRtl,
   };
 }
